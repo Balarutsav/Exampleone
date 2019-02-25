@@ -17,6 +17,8 @@ import com.hbb20.CountryCodePicker;
 
 import io.michaelrocks.libphonenumber.android.Phonenumber;
 
+
+
 public class LoginActivity extends AppCompatActivity {
     Button button;
     EditText editText;
@@ -28,7 +30,6 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.login);
         findview();
         listener();

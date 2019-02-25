@@ -11,11 +11,11 @@ import retrofit2.http.POST;
 public interface RetrofitInterface {
 
     @FormUrlEncoded
-    @POST("confirm_tel.php")
+    @POST("spit_api/ws/confirm_tel.php")
     Call<JsonElement> gettoken(@Field("to") String to, @Field("token") String token);
 
     @FormUrlEncoded
-    @POST("register.php")
+    @POST("spit_api/ws/register.php")
     Call<Mobile> registeruser(@Field("regid") int regid, @Field("tel") String tel, @Field("platform") String platform);
 
 }

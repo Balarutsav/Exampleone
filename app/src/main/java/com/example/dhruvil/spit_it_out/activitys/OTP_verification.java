@@ -29,7 +29,7 @@ import retrofit2.Response;
 public class OTP_verification extends AppCompatActivity {
     Button button1;
     String phonenum;
-    EditText editText1,editText2,editText3,editText4;
+    EditText editText1, editText2, editText3, editText4;
     ImageView imageView;
     String otpinput, checkNum, phone_to_confirm;
     TextView otpcode;
@@ -60,7 +60,7 @@ public class OTP_verification extends AppCompatActivity {
             @Override
             public void onClick(android.view.View v) {
 
-                Intent intent=new Intent(OTP_verification.this, LoginActivity.class);
+                Intent intent = new Intent(OTP_verification.this, LoginActivity.class);
                 startActivity(intent);
 
 
@@ -141,8 +141,7 @@ public class OTP_verification extends AppCompatActivity {
 
     }
 
-    public void otp()
-    {
+    public void otp() {
         editText1.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -156,8 +155,7 @@ public class OTP_verification extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                if(editText1!=null)
-                {
+                if (editText1 != null) {
                     editText2.requestFocus();
                 }
             }
@@ -175,8 +173,7 @@ public class OTP_verification extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                if(editText2!=null)
-                {
+                if (editText2 != null) {
                     editText3.requestFocus();
                 }
             }
@@ -194,13 +191,12 @@ public class OTP_verification extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                if(editText3!=null)
-                {
+                if (editText3 != null) {
                     editText4.requestFocus();
                 }
             }
         });
-     }
+    }
 
     private void init() {
 
