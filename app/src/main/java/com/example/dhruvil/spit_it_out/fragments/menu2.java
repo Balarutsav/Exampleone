@@ -1,4 +1,4 @@
-package com.example.dhruvil.spit_it_out;
+package com.example.dhruvil.spit_it_out.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -7,6 +7,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.dhruvil.spit_it_out.R;
 
 public class menu2 extends Fragment {
 

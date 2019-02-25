@@ -1,4 +1,4 @@
-package com.example.dhruvil.spit_it_out;
+package com.example.dhruvil.spit_it_out.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.dhruvil.spit_it_out.Models.Demomodel;
+import com.example.dhruvil.spit_it_out.R;
 import com.google.gson.Gson;
 
 public class menu4 extends Fragment {

@@ -1,4 +1,4 @@
-package com.example.dhruvil.spit_it_out;
+package com.example.dhruvil.spit_it_out.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -12,6 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.dhruvil.spit_it_out.Models.Datamodel;
+import com.example.dhruvil.spit_it_out.R;
+import com.example.dhruvil.spit_it_out.adapter.Myadapter;
 
 import java.util.ArrayList;
 
