@@ -101,7 +101,7 @@ public class OTP_verification extends AppCompatActivity {
             @Override
             public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
                 if (otpinput.equals(checkNum)) {
-                    startActivity(new Intent(OTP_verification.this, MainActivity.class));
+                    startActivity(new Intent(OTP_verification.this, MobileVerifiedActivity.class));
                 } else {
                     Toast.makeText(OTP_verification.this, "plese enter correct otp", Toast.LENGTH_LONG).show();
                 }
@@ -111,6 +111,11 @@ public class OTP_verification extends AppCompatActivity {
             @Override
 
             public void onFailure(Call<JsonElement> call, Throwable t) {
+             /*   if (otpinput.equals(checkNum)) {
+                    startActivity(new Intent(OTP_verification.this, MobileVerifiedActivity.class));
+                } else {
+                    Toast.makeText(OTP_verification.this, "plese enter correct otp", Toast.LENGTH_LONG).show();
+                }*/
                 Toast.makeText(OTP_verification.this, "otpApi is not working", Toast.LENGTH_LONG).show();
             }
         });

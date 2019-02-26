@@ -3,4 +3,31 @@
     <color name="colorPrimary">#D81B60</color>
     <color name="colorPrimaryDark">#D81B60</color>
     <color name="colorAccent">#D81B60</color>
+
+
+    <color name="black">#000000</color>
+    <color name="main_bg_color">#F6F6F6</color>
+    <color name="menu_header_color">#232C3D</color>
+    <color name="menu_row_color">#EFEDEE</color>
+    <color name="white">#ffffff</color>
+    <color name="transparent">#00FFFFFF</color>
+    <color name="edt_txt_color">#262626</color>
+    <color name="edt_txt_hint_color">#636363</color>
+    <color name="edt_border_unselected_color">#EBEBEB</color>
+    <color name="gray">#d4d4d4</color>
+    <color name="red">#E2574C</color>
+    <color name="grayDark">#494949</color>
+    <color name="gray1">#EEEEEE</color>
+    <color name="gray2">#22007fff</color>
+    <color name="gray3">#9b9a9a</color>
+    <color name="gray4">#8f8f8f</color>
+    <color name="BlackTrans">#50000000</color>
+
+    <color name="default_waveform">#E91E63</color>
+    <color name="default_waveformFill">#f1f1f1</color>
+    <color name="default_playback_indicator">#21b3b3</color>
+    <color name="default_timecode">#4ce9ec</color>
+    <color name="default_background">#f9f9f9</color>
+    <color name="default_back">#EEEEEE</color>
+
 </resources>
