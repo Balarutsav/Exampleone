@@ -24,7 +24,7 @@
                 android:text="Verify Mobile"
                 android:textAlignment="center"
                 android:textColor="#ffffff"
-                android:textSize="24sp" />
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/textview2"
@@ -35,7 +35,7 @@
                 android:text="please enter your mobile Number"
                 android:textAlignment="center"
                 android:textColor="#ffffff"
-                android:textSize="18sp"/>
+                android:textSize="16sp"/>
         </LinearLayout>
 
         <ImageView

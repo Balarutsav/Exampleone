@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <item
+        android:id="@+id/Public"
+        android:title="@string/public1"/>
+
     <item
-        android:id="@+id/timeline"
-        android:title=
-            "@string/timeline"
-        />
-    <item
-        android:id="@+id/publict"
-        android:title="@string/public_timeline"
-        />
-    <item
-        android:id="@+id/viedo"
-        android:title="@string/video"
+        android:id="@+id/tieline"
+        android:title="@string/timeline"
         />
 
     <item
-        android:id="@+id/logout"
-        android:title="Logout"
+        android:id="@+id/Contacts"
+        android:title="@string/contacts"
+        />
+
+    <item
+        android:id="@+id/Settings"
+        android:title="@string/settings"
         />
 
 

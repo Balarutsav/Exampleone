@@ -4,13 +4,17 @@
     <string name="s1" />
     <string name="s2" />
     <string name="fragment2">fragment2</string>
-    <string name="timeline">Timeline</string>
+
     <string name="viedo">viedo</string>
-    <string name="ptblictimeline">ptblictimeline</string>
-    <string name="publictimeline">publictimeline</string>
+
     <string name="genral">genral</string>
     <string name="hello" />
-    <string name="public_timeline">Public Timeline</string>
+
     <string name="video">video</string>
     <string name="spit_it_out">SPIT IT OUT</string>
+    <string name="timeline">Timeline</string>
+    <string name="public1">Public</string>
+    <string name="contacts">Contacts</string>
+    <string name="settings">Settings</string>
+
 </resources>

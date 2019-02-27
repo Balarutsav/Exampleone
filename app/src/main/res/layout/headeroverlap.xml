@@ -4,18 +4,27 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="bottom"
-    android:orientation="vertical"
-    android:padding="16dp"
+    android:orientation="horizontal"
+    android:background="@color/colorPrimary"
+    android:paddingTop="10dip"
+    android:paddingEnd="10dip"
     android:theme="@style/ThemeOverlay.AppCompat.Dark"
     >
 
 
     <ImageView
-        android:id="@+id/imageview"
+        android:layout_width="80dip"
+        android:layout_height="80dip"
+        android:src="@drawable/spit_logo_splash" />
+
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/download1"
-        android:paddingTop="16dp" />
-
+        android:layout_marginLeft="5dip"
+        android:layout_marginStart="15dp"
+        android:layout_marginBottom="15dp"
+        android:text="@string/spit_it_out"
+        android:textColor="@color/white"
+        android:textSize="16sp" />
 
 </LinearLayout>

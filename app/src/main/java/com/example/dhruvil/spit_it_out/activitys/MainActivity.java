@@ -1,6 +1,6 @@
 package com.example.dhruvil.spit_it_out.activitys;
 
-import android.app.Activity;
+import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -40,8 +40,11 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        imageView=findViewById(R.id.imgb1);
-        drawer = findViewById(R.id.drawer_layout);
+
+
+        findview();
+
+        requespermission();
 
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,6 +57,8 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
         });
         NavigationView navigationView=findViewById(R.id.navigation_view);
         navigationView.setNavigationItemSelectedListener(this);
+        NavigationView navmenuview= (NavigationView) navigationView.getChildAt(0);
+
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
@@ -75,6 +80,19 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
 
     }
 
+    private void findview() {
+        imageView=findViewById(R.id.imgb1);
+        drawer = findViewById(R.id.drawer_layout);
+    }
+
+    private void requespermission() {
+        new Gota.Builder(this)
+                .withPermissions(Manifest.permission.INTERNET,Manifest.permission.CAMERA,Manifest.permission.RECORD_AUDIO,Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.READ_EXTERNAL_STORAGE)
+                .requestId(1)
+                .setListener(this)
+                .check();
+    }
+
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         displaySelectedScreen(item.getItemId());
@@ -89,17 +107,18 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
 
         switch (id)
         {
-            case R.id.timeline:
+            case R.id.Public:
                 fragment = new menu1();
                 break;
-            case R.id.publict:
+            case R.id.tieline:
                 fragment = new menu2();
                 break;
-            case R.id.viedo:
+            case R.id.Contacts:
                 fragment = new menu3();
                 break;
-            case R.id.logout:
+            case R.id.Settings:
                 fragment = new menu4();
+                break;
         }
         if(fragment != null)
         {

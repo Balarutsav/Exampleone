@@ -224,6 +224,7 @@ public class OTP_verification extends AppCompatActivity {
     }
 
 
+
     private void init() {
 
         Bundle bundle = getIntent().getExtras();
