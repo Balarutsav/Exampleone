@@ -21,6 +21,7 @@ import com.google.gson.JsonElement;
 
 import java.util.Random;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -52,7 +53,7 @@ public class OTP_verification extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 otpinput = editText1.getText().toString() + editText2.getText().toString() + editText3.getText().toString() + editText4.getText().toString();
-                sendotp();
+                confirmtelstore();
 
             }
         });
@@ -71,7 +72,7 @@ public class OTP_verification extends AppCompatActivity {
 
     public void registerApi() {
         Mobile mobile = new Mobile();
-        mobile.setRegid(1);
+        mobile.setRegid("123");
         mobile.setTel(phone_to_confirm);
         mobile.setPlatform("Android");
         RetrofitInterface retrofitInterface = RetrofitClient.getClient().create(RetrofitInterface.class);
@@ -79,8 +80,7 @@ public class OTP_verification extends AppCompatActivity {
         call.enqueue(new Callback<Mobile>() {
             @Override
             public void onResponse(Call<Mobile> call, Response<Mobile> response) {
-                Mobile mobile1 = response.body();
-                mobile1.getRegid();
+
                 Toast.makeText(OTP_verification.this, "responce suceess", Toast.LENGTH_LONG).show();
             }
 
@@ -96,7 +96,37 @@ public class OTP_verification extends AppCompatActivity {
         mobile.setTo(phone_to_confirm);
         mobile.setToken(checkNum);
         RetrofitInterface retrofitInterface = RetrofitClient.getClient().create(RetrofitInterface.class);
-        Call<JsonElement> call = retrofitInterface.gettoken(mobile.getTo(), mobile.getToken());
+        Call<ResponseBody> call = retrofitInterface.gettoken(mobile.getTo(), mobile.getToken());
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if (otpinput.equals(checkNum)) {
+                    startActivity(new Intent(OTP_verification.this, MobileVerifiedActivity.class));
+                } else {
+                    Toast.makeText(OTP_verification.this, "plese enter correct otp", Toast.LENGTH_LONG).show();
+                }
+                Toast.makeText(OTP_verification.this, "otpApi is working", Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+             /*   if (otpinput.equals(checkNum)) {
+                    startActivity(new Intent(OTP_verification.this, MobileVerifiedActivity.class));
+                } else {
+                    Toast.makeText(OTP_verification.this, "plese enter correct otp", Toast.LENGTH_LONG).show();
+                }*/
+                Toast.makeText(OTP_verification.this, "otpApi is not working", Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+    public void confirmtelstore() {
+        Mobile mobile = new Mobile();
+        mobile.setTo(phone_to_confirm);
+        mobile.setGcm_regid("1234");
+        mobile.setPlatform("Android");
+        RetrofitInterface retrofitInterface = RetrofitClient.getClient().create(RetrofitInterface.class);
+        Call<JsonElement> call = retrofitInterface.updateOTPOnServer(mobile.getTo(), mobile.getGcm_regid(),mobile.getPlatform());
         call.enqueue(new Callback<JsonElement>() {
             @Override
             public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
@@ -121,6 +151,7 @@ public class OTP_verification extends AppCompatActivity {
         });
     }
 
+
     private void findview() {
 
         button1 = findViewById(R.id.next1);
@@ -143,6 +174,7 @@ public class OTP_verification extends AppCompatActivity {
 
         checkNum = Integer.toString(rand.nextInt((max - min) + 1) + min);
         otpcode.setText(checkNum);
+        sendotp();
 
     }
 
@@ -202,6 +234,7 @@ public class OTP_verification extends AppCompatActivity {
             }
         });
     }
+
 
     private void init() {
 
