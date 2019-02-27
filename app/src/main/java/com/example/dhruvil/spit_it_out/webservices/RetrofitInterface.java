@@ -18,7 +18,7 @@ public interface RetrofitInterface {
 
     @FormUrlEncoded
     @POST("confirm_tel_store.php")
-    Call<JsonElement> updateOTPOnServer(
+    Call<ResponseBody> updateOTPOnServer(
             @Field("to") String to,
             @Field("gcm_regid") String gcm_regid,
             @Field("platform") String platform);

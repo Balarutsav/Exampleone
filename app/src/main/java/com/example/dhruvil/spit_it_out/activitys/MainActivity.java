@@ -1,5 +1,6 @@
 package com.example.dhruvil.spit_it_out.activitys;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -24,12 +25,16 @@ import com.example.dhruvil.spit_it_out.fragments.menu2;
 import com.example.dhruvil.spit_it_out.fragments.menu3;
 import com.example.dhruvil.spit_it_out.fragments.menu4;
 
+import net.alhazmy13.gota.Gota;
+import net.alhazmy13.gota.GotaResponse;
 
-public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener, NavigationView.OnNavigationItemSelectedListener{
+
+public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener, NavigationView.OnNavigationItemSelectedListener, Gota.OnRequestPermissionsBack {
 
     ImageView imageView;
     private DrawerLayout drawer;
     Fragment fragment = null;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -132,4 +137,16 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
         return false;
     }
 
+
+    @Override
+    public void onRequestBack(int requestId, @NonNull GotaResponse gotaResponse) {
+        if(gotaResponse.isAllGranted()){
+            Toast.makeText(MainActivity.this,"permission is granted",Toast.LENGTH_SHORT).show();
+        }
+
+        else
+        {
+            Toast.makeText(MainActivity.this,"give permission",Toast.LENGTH_SHORT).show();
+        }
+    }
 }

@@ -100,6 +100,28 @@ public class OTP_verification extends AppCompatActivity {
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
+                Toast.makeText(OTP_verification.this, "otpApi is working", Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+                Toast.makeText(OTP_verification.this, "otpApi is not working", Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+    public void confirmtelstore() {
+        Mobile mobile = new Mobile();
+        mobile.setTo(phone_to_confirm);
+        mobile.setGcm_regid("1234");
+        mobile.setPlatform("Android");
+        RetrofitInterface retrofitInterface = RetrofitClient.getClient().create(RetrofitInterface.class);
+        Call<ResponseBody> call = retrofitInterface.updateOTPOnServer(mobile.getTo(), mobile.getGcm_regid(),mobile.getPlatform());
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if (otpinput.equals(checkNum)) {
                     startActivity(new Intent(OTP_verification.this, MobileVerifiedActivity.class));
                 } else {
@@ -111,41 +133,7 @@ public class OTP_verification extends AppCompatActivity {
             @Override
 
             public void onFailure(Call<ResponseBody> call, Throwable t) {
-             /*   if (otpinput.equals(checkNum)) {
-                    startActivity(new Intent(OTP_verification.this, MobileVerifiedActivity.class));
-                } else {
-                    Toast.makeText(OTP_verification.this, "plese enter correct otp", Toast.LENGTH_LONG).show();
-                }*/
-                Toast.makeText(OTP_verification.this, "otpApi is not working", Toast.LENGTH_LONG).show();
-            }
-        });
-    }
-    public void confirmtelstore() {
-        Mobile mobile = new Mobile();
-        mobile.setTo(phone_to_confirm);
-        mobile.setGcm_regid("1234");
-        mobile.setPlatform("Android");
-        RetrofitInterface retrofitInterface = RetrofitClient.getClient().create(RetrofitInterface.class);
-        Call<JsonElement> call = retrofitInterface.updateOTPOnServer(mobile.getTo(), mobile.getGcm_regid(),mobile.getPlatform());
-        call.enqueue(new Callback<JsonElement>() {
-            @Override
-            public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
-                if (otpinput.equals(checkNum)) {
-                    startActivity(new Intent(OTP_verification.this, MobileVerifiedActivity.class));
-                } else {
-                    Toast.makeText(OTP_verification.this, "plese enter correct otp", Toast.LENGTH_LONG).show();
-                }
-                Toast.makeText(OTP_verification.this, "otpApi is working", Toast.LENGTH_LONG).show();
-            }
 
-            @Override
-
-            public void onFailure(Call<JsonElement> call, Throwable t) {
-             /*   if (otpinput.equals(checkNum)) {
-                    startActivity(new Intent(OTP_verification.this, MobileVerifiedActivity.class));
-                } else {
-                    Toast.makeText(OTP_verification.this, "plese enter correct otp", Toast.LENGTH_LONG).show();
-                }*/
                 Toast.makeText(OTP_verification.this, "otpApi is not working", Toast.LENGTH_LONG).show();
             }
         });
