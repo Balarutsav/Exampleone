@@ -6,30 +6,33 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".activitys.camera">
-
-
     <ImageView
+        android:layout_width="match_parent"
+        android:id="@+id/setimage1"
+        android:background="@android:color/white"
+        android:layout_height="450dp" />
+
+    <Button
+        android:id="@+id/camera1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textAlignment="center"
+        android:textColor="@android:color/white"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/btn_bg_rounded"
+        android:text="CaptureImage" />
+    <Button
         android:id="@+id/setimage"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_width="wrap_content"
+        android:textColor="@color/white"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/btn_bg_rounded"
+        android:text="setimage"
 
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
-
-
-        <ImageButton
-            android:id="@id/camera"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="20dp"
-            android:src="@drawable/camera" />
-    </RelativeLayout>
+        />
 
 
 </LinearLayout>

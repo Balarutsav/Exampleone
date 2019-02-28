@@ -5,9 +5,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -20,10 +20,10 @@ import android.widget.PopupMenu;
 import android.widget.Toast;
 
 import com.example.dhruvil.spit_it_out.R;
-import com.example.dhruvil.spit_it_out.fragments.menu1;
-import com.example.dhruvil.spit_it_out.fragments.menu2;
-import com.example.dhruvil.spit_it_out.fragments.menu3;
-import com.example.dhruvil.spit_it_out.fragments.menu4;
+import com.example.dhruvil.spit_it_out.fragments.PublicFragments;
+import com.example.dhruvil.spit_it_out.fragments.TimelineFragments;
+import com.example.dhruvil.spit_it_out.fragments.ContactsFragments;
+import com.example.dhruvil.spit_it_out.fragments.SettingsFragments;
 
 import net.alhazmy13.gota.Gota;
 import net.alhazmy13.gota.GotaResponse;
@@ -67,11 +67,11 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
         toggle.setDrawerIndicatorEnabled(true);
         toggle.syncState();
 
-        fragment = new menu1();
+        fragment = new PublicFragments();
 
         if(fragment != null)
         {
-            FragmentManager fragmentManager=getSupportFragmentManager();
+            FragmentManager fragmentManager=getFragmentManager();
             FragmentTransaction ft = fragmentManager.beginTransaction();
             ft.replace(R.id.f,fragment);
             ft.commit();
@@ -108,21 +108,21 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
         switch (id)
         {
             case R.id.Public:
-                fragment = new menu1();
+                fragment = new PublicFragments();
                 break;
             case R.id.tieline:
-                fragment = new menu2();
+                fragment = new TimelineFragments();
                 break;
             case R.id.Contacts:
-                fragment = new menu3();
+                fragment = new ContactsFragments();
                 break;
             case R.id.Settings:
-                fragment = new menu4();
+                fragment = new SettingsFragments();
                 break;
         }
         if(fragment != null)
         {
-            FragmentManager fragmentManager=getSupportFragmentManager();
+            FragmentManager fragmentManager=getFragmentManager();
             FragmentTransaction ft = fragmentManager.beginTransaction();
             ft.replace(R.id.f,fragment);
             ft.commit();
@@ -137,19 +137,19 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
 
         switch (menuItem.getItemId()){
             case R.id.audio:
-                Intent intent = new Intent(MainActivity.this, audio.class);
-                startActivity(intent);
+                Intent intentaudio= new Intent(MainActivity.this, audio.class);
+                startActivity(intentaudio);
 
                 return true;
 
             case R.id.camera:
-                Intent intent2 = new Intent(MainActivity.this, camera.class);
-                startActivity(intent2);
+                Intent intentcamera = new Intent(MainActivity.this, camera.class);
+                startActivity(intentcamera);
                 return true;
 
             case R.id.video:
-                Intent intent1=new Intent(MainActivity.this, video.class);
-                startActivity(intent1);
+                Intent intentvideo=new Intent(MainActivity.this, video.class);
+                startActivity(intentvideo);
                 return true;
         }
 

@@ -1,8 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activitys.video">
+    android:orientation="vertical">
+    <VideoView
+        android:layout_marginTop="26dp"
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        android:id="@+id/avideoview"/>
+    <Button
+        android:layout_marginTop="26dp"
+        android:text="@string/video"
+        android:textColor="@color/white"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:id="@+id/buttonvideorecord"
+        android:layout_gravity="center"
 
-</android.support.constraint.ConstraintLayout>
+        android:background="@drawable/btn_bg_rounded"/>
+    <Button
+        android:layout_height="wrap_content"
+        android:layout_marginTop="26dp"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/btn_bg_rounded"
+        android:id="@+id/playVideo"
+        android:textColor="@color/white"
+        android:text="PlayVideo"
+
+        />
+
+
+</LinearLayout>

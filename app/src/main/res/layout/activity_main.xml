@@ -6,20 +6,17 @@
     android:id="@+id/drawer_layout"
     android:layout_height="match_parent"
     tools:context=".activitys.MainActivity">
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-
         <android.support.v7.widget.Toolbar
             android:id="@+id/my_toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
             app:titleTextColor="#ffffff"
-            app:title="SPIT IT OUT" />
-
+            app:title="SPIT IT OUT"/>
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -30,7 +27,6 @@
             android:layout_height="match_parent" />
 
             <ImageView
-
                 android:id="@+id/imgb1"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
@@ -40,7 +36,6 @@
                 android:src="@drawable/ic_menu_open" />
         </RelativeLayout>
     </LinearLayout>
-
     <android.support.design.widget.NavigationView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -49,11 +44,7 @@
         android:fitsSystemWindows="true"
         app:menu="@menu/navigationmenu"
         app:headerLayout="@layout/headeroverlap"
-
-
         >
-
-
     </android.support.design.widget.NavigationView>
 
 </android.support.v4.widget.DrawerLayout>
