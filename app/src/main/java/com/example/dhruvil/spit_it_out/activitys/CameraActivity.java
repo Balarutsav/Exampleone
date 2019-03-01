@@ -9,14 +9,13 @@ import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import com.example.dhruvil.spit_it_out.R;
 
 import java.io.File;
 
-public class camera extends AppCompatActivity {
+public class CameraActivity extends AppCompatActivity {
     Button camera,setimage;
     ImageView imageView;
 

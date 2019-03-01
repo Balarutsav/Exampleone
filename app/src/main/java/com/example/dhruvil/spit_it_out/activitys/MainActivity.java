@@ -1,13 +1,13 @@
 package com.example.dhruvil.spit_it_out.activitys;
 
 import android.Manifest;
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -20,10 +20,10 @@ import android.widget.PopupMenu;
 import android.widget.Toast;
 
 import com.example.dhruvil.spit_it_out.R;
-import com.example.dhruvil.spit_it_out.fragments.PublicFragments;
-import com.example.dhruvil.spit_it_out.fragments.TimelineFragments;
 import com.example.dhruvil.spit_it_out.fragments.ContactsFragments;
+import com.example.dhruvil.spit_it_out.fragments.PublicFragments;
 import com.example.dhruvil.spit_it_out.fragments.SettingsFragments;
+import com.example.dhruvil.spit_it_out.fragments.TimelineFragments;
 
 import net.alhazmy13.gota.Gota;
 import net.alhazmy13.gota.GotaResponse;
@@ -137,18 +137,18 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
 
         switch (menuItem.getItemId()){
             case R.id.audio:
-                Intent intentaudio= new Intent(MainActivity.this, audio.class);
+                Intent intentaudio = new Intent(MainActivity.this, AudioActivity.class);
                 startActivity(intentaudio);
 
                 return true;
 
             case R.id.camera:
-                Intent intentcamera = new Intent(MainActivity.this, camera.class);
+                Intent intentcamera = new Intent(MainActivity.this, CameraActivity.class);
                 startActivity(intentcamera);
                 return true;
 
             case R.id.video:
-                Intent intentvideo=new Intent(MainActivity.this, video.class);
+                Intent intentvideo = new Intent(MainActivity.this, VideoActivity.class);
                 startActivity(intentvideo);
                 return true;
         }
@@ -168,4 +168,5 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
             Toast.makeText(MainActivity.this,"give permission",Toast.LENGTH_SHORT).show();
         }
     }
+
 }

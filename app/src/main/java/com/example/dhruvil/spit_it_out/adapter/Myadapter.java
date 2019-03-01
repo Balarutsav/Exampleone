@@ -168,14 +168,14 @@ public class Myadapter extends RecyclerView.Adapter<Myadapter.MyViewHolder> impl
 
     class MyViewHolder extends RecyclerView.ViewHolder {
         ImageView imageViewl, ivshare, ivinfo;
-        TextView tvdescription, tvdayago,tvview;
+        TextView tvdescription, tvdayago, tvview;
         VideoView videoView;
         ImageButton audio;
 
 
         MyViewHolder(View itemView) {
             super(itemView);
-            tvview=itemView.findViewById(R.id.tvview);
+            tvview = itemView.findViewById(R.id.tvview);
             audio = itemView.findViewById(R.id.pfaudio);
             videoView = itemView.findViewById(R.id.pfvideoview);
             tvdescription = itemView.findViewById(R.id.tvdescription);

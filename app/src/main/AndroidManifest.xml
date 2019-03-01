@@ -19,9 +19,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".activitys.MobileVerifiedActivity"></activity>
-        <activity android:name=".activitys.camera" />
-        <activity android:name=".activitys.video" />
-        <activity android:name=".activitys.audio" />
+        <activity android:name=".activitys.CameraActivity" />
+        <activity android:name=".activitys.VideoActivity" />
+        <activity android:name=".activitys.AudioActivity" />
         <activity android:name=".activitys.MainActivity" />
         <activity android:name=".activitys.SplashActivity">
             <intent-filter>

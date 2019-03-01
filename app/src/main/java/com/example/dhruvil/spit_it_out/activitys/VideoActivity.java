@@ -5,7 +5,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -16,7 +15,7 @@ import com.example.dhruvil.spit_it_out.R;
 
 import java.io.File;
 
-public class video extends AppCompatActivity {
+public class VideoActivity extends AppCompatActivity {
     Button recordvideo, playvideo;
     VideoView videoView;
     Uri videoFileUri;
@@ -42,7 +41,7 @@ public class video extends AppCompatActivity {
 
                 File f = new File(Environment.getExternalStorageDirectory(), folder_main);
                 File video = new File(Environment.getExternalStorageDirectory() + "/" + folder_main, "Video");
-                File image=new File(video,System.currentTimeMillis()+"video.mp4");
+                File image = new File(video, System.currentTimeMillis() + "VideoActivity.mp4");
                 videoFileUri=Uri.fromFile(image);
                 Intent recordvidero = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
                 recordvidero.putExtra(MediaStore.EXTRA_OUTPUT,videoFileUri);

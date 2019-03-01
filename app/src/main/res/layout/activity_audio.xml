@@ -4,71 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
-    tools:context=".activitys.audio">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:orientation="vertical"
-        android:layout_height="match_parent">
-        <Chronometer
-            android:layout_height="100dp"
-            android:layout_marginTop="40dp"
-            android:gravity="center"
-            android:background="@color/colorAccent"
-            android:textColor="@android:color/white"
-            android:layout_width="match_parent"
-            android:textSize="60dp"
-            android:id="@+id/chronometer"
-            />
+    tools:context=".activitys.AudioActivity">
 
 
-
-        <Button
-            android:textColor="@android:color/white"
-         android:layout_height="wrap_content"
-            android:layout_marginTop="26dp"
-            android:background="@drawable/btn_bg_rounded"
-            android:id="@+id/start"
-            android:layout_width="wrap_content"
-            android:layout_gravity="center"
-            android:text="Start"
-
-
-            />
-        <Button
-            android:textColor="@android:color/white"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:background="@drawable/btn_bg_rounded"
-                android:layout_gravity="center"
-            android:id="@+id/stop"
-            android:layout_marginTop="26dp"
-            android:text="STOP"
-
-
-            />
-        <Button
-            android:textColor="@android:color/white"
-            android:id="@+id/play"
-            android:layout_width="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="26dp"
-            android:text="PLAY LAST RECORD"
-            android:layout_height="wrap_content"
-            android:background="@drawable/btn_bg_rounded"
-            />
-        <Button
-            android:textColor="@android:color/white"
-            android:layout_marginTop="26dp"
-            android:id="@+id/stopplay"
-            android:layout_width="wrap_content"
-            android:layout_gravity="center"
-            android:text="stopplay"
-            android:background="@drawable/btn_bg_rounded"
-            android:layout_height="wrap_content"
-
-            />
-    </LinearLayout>
 
 
 
