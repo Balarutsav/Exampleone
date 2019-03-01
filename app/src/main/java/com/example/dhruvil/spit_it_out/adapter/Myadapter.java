@@ -1,18 +1,22 @@
 package com.example.dhruvil.spit_it_out.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.MediaController;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
@@ -22,10 +26,13 @@ import com.example.dhruvil.spit_it_out.Models.Spit;
 import com.example.dhruvil.spit_it_out.R;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 
-public class Myadapter extends RecyclerView.Adapter<Myadapter.MyViewHolder> {
+public class Myadapter extends RecyclerView.Adapter<Myadapter.MyViewHolder> implements PopupMenu.OnMenuItemClickListener {
     Context context;
     private ArrayList<Spit> datamodel;
 
@@ -44,6 +51,10 @@ public class Myadapter extends RecyclerView.Adapter<Myadapter.MyViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder myViewHolder, int i) {
+        final String link = datamodel.get(i).getSharetext();
+        myViewHolder.tvdescription.setText(datamodel.get(i).getDesctype());
+        myViewHolder.tvview.setText(datamodel.get(i).getViews());
+
 
 
         if (datamodel.get(i).getKind().equals("pic")) {
@@ -63,7 +74,7 @@ public class Myadapter extends RecyclerView.Adapter<Myadapter.MyViewHolder> {
 
             try {
 
-                 mediaPlayer.setDataSource(datamodel.get(i).getPath());
+                mediaPlayer.setDataSource(datamodel.get(i).getPath());
                 mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
                 mediaPlayer.prepare();
             } catch (IOException e) {
@@ -85,6 +96,29 @@ public class Myadapter extends RecyclerView.Adapter<Myadapter.MyViewHolder> {
 
         }
 
+        myViewHolder.ivinfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PopupMenu popupMenu = new PopupMenu(context, v);
+                popupMenu.inflate(R.menu.support);
+                popupMenu.setOnMenuItemClickListener((PopupMenu.OnMenuItemClickListener) context);
+                popupMenu.show();
+            }
+        });
+
+        myViewHolder.ivshare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context, "you share link", Toast.LENGTH_LONG).show();
+                Intent shareIntent = new Intent(Intent.ACTION_SEND);
+                shareIntent.setType("text/plain");
+                shareIntent.putExtra(Intent.EXTRA_SUBJECT, "My application name");
+                shareIntent.putExtra(Intent.EXTRA_TEXT, link);
+                context.startActivity(shareIntent);
+            }
+        });
+
+
 
 /*
 
@@ -101,28 +135,48 @@ public class Myadapter extends RecyclerView.Adapter<Myadapter.MyViewHolder> {
 
     }
 
+
     @Override
     public int getItemCount() {
         return datamodel.size();
     }
 
+    @Override
+    public boolean onMenuItemClick(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.report:
+                Toast.makeText(context, "Spit Reported", Toast.LENGTH_SHORT);
+                break;
+            case R.id.Blacklist:
+                Toast.makeText(context, "Spit Reported And User is Blocked", Toast.LENGTH_SHORT);
+                break;
+        }
+
+
+        return false;
+    }
+
+
     class MyViewHolder extends RecyclerView.ViewHolder {
         ImageView imageViewl, ivshare, ivinfo;
-        TextView tvdescription, tvdayago;
+        TextView tvdescription, tvdayago,tvview;
         VideoView videoView;
         ImageButton audio;
 
 
         MyViewHolder(View itemView) {
             super(itemView);
+            tvview=itemView.findViewById(R.id.tvview);
             audio = itemView.findViewById(R.id.pfaudio);
             videoView = itemView.findViewById(R.id.pfvideoview);
             tvdescription = itemView.findViewById(R.id.tvdescription);
             tvdayago = itemView.findViewById(R.id.tvdayago);
-            /*ivinfo=itemView.findViewById(R.id.ibaction);
-            ivshare=itemView.findViewById(R.id.ibshare);*/
+            ivinfo = itemView.findViewById(R.id.ibaction);
+            ivshare = itemView.findViewById(R.id.ibshare);
             imageViewl = itemView.findViewById(R.id.pfimageview);
+
 
         }
     }
+
 }
