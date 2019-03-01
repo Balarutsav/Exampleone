@@ -7,15 +7,12 @@ import android.media.MediaPlayer;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
-import android.text.format.DateUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.MediaController;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -54,7 +51,19 @@ public class Myadapter extends RecyclerView.Adapter<Myadapter.MyViewHolder> impl
         final String link = datamodel.get(i).getSharetext();
         myViewHolder.tvdescription.setText(datamodel.get(i).getDesctype());
         myViewHolder.tvview.setText(datamodel.get(i).getViews());
-
+        final String createdate = datamodel.get(i).getDtCreate();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        try {
+            Date date = simpleDateFormat.parse(createdate);
+            long createdateinms = date.getTime();
+            long currentdateinms = System.currentTimeMillis();
+            long daybefore = currentdateinms - createdateinms;
+            Date dayago = new Date(daybefore);
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd");
+            myViewHolder.tvdayago.setText(dateFormat.format(dayago) + "d ago");
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
 
         if (datamodel.get(i).getKind().equals("pic")) {
