@@ -2,9 +2,9 @@ package com.example.dhruvil.spit_it_out.Models;
 
 public class MyDBModel {
 
-    public static final String COULUMN_ID = "id";
+    public static final String COULUMN_ID = "ID";
     public static final String TABLE_NAME = "Groupmember";
-    public static final String COULMN_NUMBER = "number";
+    public static final String COULMN_NUMBER = "Number";
     public static final String COULMN_NAME = "Name";
     //Create table "+TABLE_NAME+" (ID INTEGER PRIMARY KEY AUTOINCREMENT,NAME TEXT,NUMBER INTEGER)");
     public static final String CREATE_TABLE = "Create table" + TABLE_NAME + "(" + COULUMN_ID + "INTEGER PRIMARY KEY AUTOINCREMENT," +

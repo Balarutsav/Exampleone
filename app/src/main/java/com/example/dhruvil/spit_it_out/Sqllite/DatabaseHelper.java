@@ -14,19 +14,17 @@ import java.util.List;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final int DATABASE_VERSION = 1;
-    private static final String DATABASE_NAME = "Group_db";
+    private static final String DATABASE_NAME = "spit.db";
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
-        SQLiteDatabase db = this.getWritableDatabase();
     }
 
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String creategroup = "CREATE TABLE " + MyDBModel.TABLE_NAME + "(" + MyDBModel.COULUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT ," + MyDBModel.COULMN_NAME +
-                MyDBModel.COULMN_NUMBER + ")";
-        db.execSQL(creategroup);
+
+        db.execSQL("Create table " + MyDBModel.TABLE_NAME + " (ID INTEGER PRIMARY KEY AUTOINCREMENT,Name TEXT,Number TEXT)");
 
     }
 
@@ -36,11 +34,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public long insertgroup(String name, String number) {
+    public long insertGroup(String name, String members) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(MyDBModel.COULMN_NAME, name);
-        values.put(MyDBModel.COULMN_NUMBER, number);
+        values.put(MyDBModel.COULMN_NUMBER, members);
 
         long id = db.insert(MyDBModel.TABLE_NAME, null, values);
         db.close();
@@ -70,9 +68,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public List<MyDBModel> getAllgroups() {
         List<MyDBModel> myDBModels = new ArrayList<>();
 
-        String SelectQuery = "SELECT  * FROM " + MyDBModel.TABLE_NAME + " ORDER BY " + MyDBModel.COULMN_NUMBER + "DESC";
+
+        String selectQuery = "select * from " + MyDBModel.TABLE_NAME + " ORDER BY " + MyDBModel.COULUMN_ID;
+
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery(SelectQuery, null);
+        Cursor cursor = db.rawQuery(selectQuery, null);
         if (cursor.moveToFirst()) {
 
             do {

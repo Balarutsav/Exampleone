@@ -24,6 +24,13 @@ public class CustomAdapter extends BaseAdapter {
     private ArrayList<ContactModel> contactModelArrayList;
     private ArrayList<groupmembers> groupmembers;
 
+    public ArrayList<ContactModel> getContactModelArrayList() {
+        return contactModelArrayList;
+    }
+
+    public void setContactModelArrayList(ArrayList<ContactModel> contactModelArrayList) {
+        this.contactModelArrayList = contactModelArrayList;
+    }
 
     public CustomAdapter(Context context, ArrayList<ContactModel> contactModelArrayList) {
         this.context = context;
@@ -81,13 +88,9 @@ public class CustomAdapter extends BaseAdapter {
         holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
 
-                    Toast.makeText(context, holder.tvnumber.getText().toString(), Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(context, "isnotchecked", Toast.LENGTH_SHORT).show();
+                contactModelArrayList.get(position).setChecked(isChecked);
 
-                }
             }
         });
 
@@ -100,4 +103,6 @@ public class CustomAdapter extends BaseAdapter {
         protected TextView tvname, tvnumber;
 
     }
+
+
 }
