@@ -12,8 +12,10 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.dhruvil.spit_it_out.Models.ContactModel;
+import com.example.dhruvil.spit_it_out.Models.MyDBModel;
 import com.example.dhruvil.spit_it_out.Models.groupmembers;
 import com.example.dhruvil.spit_it_out.R;
+import com.example.dhruvil.spit_it_out.Sqllite.DatabaseHelper;
 import com.example.dhruvil.spit_it_out.adapter.CustomAdapter;
 
 import java.util.ArrayList;
@@ -26,16 +28,21 @@ public class ContectsActivity extends AppCompatActivity {
     private ListView listView;
     private CustomAdapter customAdapter;
     private ArrayList<ContactModel> contactModelArrayList;
+    DatabaseHelper databaseHelper;
+    private ArrayList<MyDBModel> myDBModels;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_contects);
 
+        setContentView(R.layout.activity_contects);
+        databaseHelper = new DatabaseHelper(this);
         listView = findViewById(R.id.listOfContacts);
         groupname = findViewById(R.id.editText_groupname);
         contactModelArrayList = new ArrayList<>();
         creategroup = findViewById(R.id.btnSpitItOut);
+
+        myDBModels.addAll(databaseHelper.getAllgroups());
         Cursor phones = getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, null, null, ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME + " ASC");
         while (phones.moveToNext()) {
             String name = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
@@ -56,6 +63,7 @@ public class ContectsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (groupname == null) {
+
                     Toast.makeText(ContectsActivity.this, "plese enter the group name", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(ContectsActivity.this, "groupcreate", Toast.LENGTH_SHORT).show();
@@ -64,5 +72,7 @@ public class ContectsActivity extends AppCompatActivity {
 
             }
         });
+
     }
+
 }
