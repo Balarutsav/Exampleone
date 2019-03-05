@@ -39,7 +39,7 @@ public class VideoActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                File f = new File(Environment.getExternalStorageDirectory(), folder_main);
+
                 File video = new File(Environment.getExternalStorageDirectory() + "/" + folder_main, "Video");
                 File image = new File(video, System.currentTimeMillis() + "VideoActivity.mp4");
                 videoFileUri=Uri.fromFile(image);

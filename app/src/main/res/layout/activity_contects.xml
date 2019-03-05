@@ -1,0 +1,187 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            android:background="@color/colorPrimary">
+
+            <TextView
+                android:id="@+id/tvCancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="7dp"
+                android:layout_marginLeft="7dp"
+                android:text="cancel"
+                android:textColor="@color/white"
+                android:textSize="16dp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:background="@color/colorPrimary"
+                android:gravity="center">
+
+                <ImageView
+
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+
+                    android:contentDescription="@string/app_name"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/spit_logo_splash" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="7dp"
+                    android:layout_marginLeft="7dp"
+                    android:text="@string/spit_it_out"
+                    android:textColor="@color/white"
+                    android:textSize="14dp" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <EditText
+                android:id="@+id/editText_groupname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dp"
+                android:hint="group_name"
+                android:inputType="text"
+                android:maxLines="1"
+                android:paddingBottom="10dp"
+                android:singleLine="true" />
+
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/edittext_contact"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@color/default_back"
+            android:drawableLeft="@drawable/abc_ic_search_api_holo_light"
+            android:editable="true"
+            android:hint="Search"
+            android:inputType="text"
+            android:maxLines="1"
+            android:paddingStart="10dp"
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="7dp"
+            android:singleLine="true"
+            android:textSize="12sp"
+            tools:ignore="RtlSymmetry" />
+
+
+        <RelativeLayout
+            android:id="@+id/frame_lists"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="7dp"
+            android:layout_weight="1"
+            tools:ignore="InefficientWeight">
+
+            <ListView
+                android:id="@+id/listOfContacts"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_toStartOf="@+id/sv_sideindex"
+                android:layout_toLeftOf="@+id/sv_sideindex"
+                android:divider="@color/transparent"
+                android:dividerHeight="0dp" />
+
+
+            <ScrollView
+                android:id="@+id/sv_sideindex"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentStart="false"
+                android:layout_alignParentLeft="false"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="false"
+                android:layout_alignParentRight="true"
+                android:fillViewport="true"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:id="@+id/sideIndex"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="@color/white"
+                    android:orientation="vertical"
+                    android:paddingLeft="7dp"
+                    android:paddingRight="7dp"
+                    android:textAlignment="center" />
+            </ScrollView>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+            android:paddingLeft="15dp"
+            android:paddingTop="10dp"
+            android:paddingRight="15dp"
+            android:paddingBottom="10dp">
+
+            <Button
+                android:id="@+id/deleteButton"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="7dp"
+                android:layout_marginRight="7dp"
+                android:layout_weight="1"
+                android:background="@drawable/btn_bg_selector"
+                android:paddingTop="7dp"
+                android:paddingBottom="7dp"
+                android:stateListAnimator="@null"
+                android:text="Delete Group"
+                tools:targetApi="lollipop" />
+
+            <Button
+                android:id="@+id/btnSpitItOut"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                android:layout_marginLeft="7dp"
+                android:layout_weight="1"
+                android:background="@drawable/btn_bg_selector"
+                android:paddingTop="7dp"
+                android:paddingBottom="7dp"
+                android:stateListAnimator="@null"
+                android:text="Create Group"
+                tools:targetApi="lollipop" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

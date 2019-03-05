@@ -4,15 +4,18 @@
     <item
         android:id="@+id/camera"
         android:icon="@drawable/camera"
-        android:title="Camera"
+        android:title=""
         />
     <item
         android:id="@+id/video"
-        android:title="Viedo"
+        android:icon="@android:drawable/presence_video_away"
+        android:title="video"
+
         />
     <item
         android:id="@+id/audio"
-        android:title="Audio"
+        android:icon="@drawable/ic_clear_black_24dp"
+        android:title="audio"
         />
 
    </group>

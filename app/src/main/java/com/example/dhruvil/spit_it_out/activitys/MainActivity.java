@@ -20,6 +20,7 @@ import android.widget.PopupMenu;
 import android.widget.Toast;
 
 import com.example.dhruvil.spit_it_out.R;
+import com.example.dhruvil.spit_it_out.Sqllite.DatabaseHelper;
 import com.example.dhruvil.spit_it_out.fragments.ContactsFragments;
 import com.example.dhruvil.spit_it_out.fragments.PublicFragments;
 import com.example.dhruvil.spit_it_out.fragments.SettingsFragments;
@@ -34,12 +35,13 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
     ImageView imageView;
     private DrawerLayout drawer;
     Fragment fragment = null;
-
+    DatabaseHelper mydb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mydb = new DatabaseHelper(this);
 
 
         findview();
@@ -87,7 +89,7 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
 
     private void requespermission() {
         new Gota.Builder(this)
-                .withPermissions(Manifest.permission.INTERNET,Manifest.permission.CAMERA,Manifest.permission.RECORD_AUDIO,Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.READ_EXTERNAL_STORAGE)
+                .withPermissions(Manifest.permission.INTERNET, Manifest.permission.CAMERA, Manifest.permission.RECORD_AUDIO, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.READ_CONTACTS)
                 .requestId(1)
                 .setListener(this)
                 .check();

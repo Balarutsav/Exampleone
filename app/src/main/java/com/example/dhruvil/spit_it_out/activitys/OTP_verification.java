@@ -17,7 +17,6 @@ import com.example.dhruvil.spit_it_out.Models.Mobile;
 import com.example.dhruvil.spit_it_out.R;
 import com.example.dhruvil.spit_it_out.webservices.RetrofitClient;
 import com.example.dhruvil.spit_it_out.webservices.RetrofitInterface;
-import com.google.gson.JsonElement;
 
 import java.util.Random;
 
@@ -81,7 +80,7 @@ public class OTP_verification extends AppCompatActivity {
             @Override
             public void onResponse(Call<Mobile> call, Response<Mobile> response) {
 
-                Toast.makeText(OTP_verification.this, "responce suceess", Toast.LENGTH_LONG).show();
+
             }
 
             @Override
@@ -101,14 +100,14 @@ public class OTP_verification extends AppCompatActivity {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
 
-                Toast.makeText(OTP_verification.this, "otpApi is working", Toast.LENGTH_LONG).show();
+
             }
 
             @Override
 
             public void onFailure(Call<ResponseBody> call, Throwable t) {
 
-                Toast.makeText(OTP_verification.this, "otpApi is not working", Toast.LENGTH_LONG).show();
+
             }
         });
     }
@@ -127,14 +126,18 @@ public class OTP_verification extends AppCompatActivity {
                 } else {
                     Toast.makeText(OTP_verification.this, "plese enter correct otp", Toast.LENGTH_LONG).show();
                 }
-                Toast.makeText(OTP_verification.this, "otpApi is working", Toast.LENGTH_LONG).show();
+
             }
 
             @Override
 
             public void onFailure(Call<ResponseBody> call, Throwable t) {
+                if (otpinput.equals(checkNum)) {
+                    startActivity(new Intent(OTP_verification.this, MobileVerifiedActivity.class));
+                } else {
+                    Toast.makeText(OTP_verification.this, "plese enter correct otp", Toast.LENGTH_LONG).show();
+                }
 
-                Toast.makeText(OTP_verification.this, "otpApi is not working", Toast.LENGTH_LONG).show();
             }
         });
     }
