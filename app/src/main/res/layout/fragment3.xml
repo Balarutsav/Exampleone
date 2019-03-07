@@ -11,11 +11,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="500dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         android:background="@drawable/btn_bg_selector"
         android:gravity="center"
-        android:onClick="load"
         android:text="Add Group" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/listallgroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
 
 </LinearLayout>

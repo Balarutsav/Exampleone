@@ -17,7 +17,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "spit.db";
 
     public DatabaseHelper(Context context) {
+
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+
     }
 
 
@@ -71,7 +73,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         String selectQuery = "select * from " + MyDBModel.TABLE_NAME + " ORDER BY " + MyDBModel.COULUMN_ID;
 
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = DatabaseHelper.this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
         if (cursor.moveToFirst()) {
 
@@ -102,8 +104,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public int updategroup(MyDBModel myDBModel) {
-        SQLiteDatabase db = this.getWritableDatabase();
 
+        SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(MyDBModel.COULMN_NAME, myDBModel.getName());
         values.put(MyDBModel.COULMN_NUMBER, myDBModel.getNumber());

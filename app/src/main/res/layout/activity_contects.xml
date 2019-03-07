@@ -152,7 +152,7 @@
             android:paddingBottom="10dp">
 
             <Button
-                android:id="@+id/deleteButton"
+                android:id="@+id/btncancel"
                 style="?android:attr/borderlessButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"

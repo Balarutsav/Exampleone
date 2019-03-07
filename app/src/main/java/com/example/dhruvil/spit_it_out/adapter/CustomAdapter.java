@@ -8,10 +8,8 @@ import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.dhruvil.spit_it_out.Models.ContactModel;
-import com.example.dhruvil.spit_it_out.Models.groupmembers;
 import com.example.dhruvil.spit_it_out.R;
 
 import java.util.ArrayList;
@@ -22,7 +20,9 @@ import java.util.ArrayList;
 public class CustomAdapter extends BaseAdapter {
     private Context context;
     private ArrayList<ContactModel> contactModelArrayList;
-    private ArrayList<groupmembers> groupmembers;
+    private ArrayList<ContactModel> contactListFiltered;
+
+
 
     public ArrayList<ContactModel> getContactModelArrayList() {
         return contactModelArrayList;
@@ -78,7 +78,7 @@ public class CustomAdapter extends BaseAdapter {
             holder.checkBox = convertView.findViewById(R.id.checkBox_selected);
             convertView.setTag(holder);
         } else {
-            // the getTag returns the viewHolder object set as a tag to the view
+
             holder = (ViewHolder) convertView.getTag();
         }
 
@@ -88,7 +88,6 @@ public class CustomAdapter extends BaseAdapter {
         holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-
                 contactModelArrayList.get(position).setChecked(isChecked);
 
             }
@@ -96,7 +95,6 @@ public class CustomAdapter extends BaseAdapter {
 
         return convertView;
     }
-
     private class ViewHolder {
 
         public CheckBox checkBox;
