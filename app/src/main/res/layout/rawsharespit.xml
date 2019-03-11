@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<ImageView
+    android:scaleType="centerCrop"
+    android:id="@+id/ivshareimage"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/_150sdp" />
+    <VideoView
+        android:scaleType="centerCrop"
+        android:id="@+id/vvsharevideo"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_150sdp" />
+<ImageView
+    android:scaleType="centerCrop"
+    android:src="@drawable/playspit"
+    android:id="@+id/ivaudioshare"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/_150sdp" />
+</RelativeLayout>
