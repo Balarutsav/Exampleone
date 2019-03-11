@@ -19,7 +19,6 @@ public class CameraActivity extends AppCompatActivity {
     Button camera,setimage;
     ImageView imageView;
 
-    Bitmap bitmap;
     private int requestCode=20;
     String folder_main = "Spit_It";
     Uri urisaveimage;
@@ -46,6 +45,7 @@ public class CameraActivity extends AppCompatActivity {
 
 
 
+
             }
 
 
@@ -58,6 +58,7 @@ public class CameraActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if(this.requestCode == requestCode && resultCode == RESULT_OK){
             imageView.setImageURI(urisaveimage);
+            startActivity(new Intent(CameraActivity.this,ShareActivity.class).putExtra("image",urisaveimage.toString()).putExtra("type",true));
 
         }
     }

@@ -85,6 +85,7 @@ public class CustomAdapter extends BaseAdapter {
         holder.tvname.setText(contactModelArrayList.get(position).getName());
         holder.tvnumber.setText(contactModelArrayList.get(position).getNumber());
         holder.checkBox.setTag(position);
+        holder.checkBox.setChecked(contactModelArrayList.get(position).isChecked());
         holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {

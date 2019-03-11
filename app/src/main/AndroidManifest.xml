@@ -19,7 +19,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activitys.ContectsActivity"></activity>
+        <activity android:name=".activitys.ShareActivity"></activity>
+        <activity android:name=".activitys.ContectsActivity" />
         <activity android:name=".activitys.MobileVerifiedActivity" />
         <activity android:name=".activitys.CameraActivity" />
         <activity android:name=".activitys.VideoActivity" />
@@ -31,7 +32,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activitys.SplashActivity"></activity>
+        <activity android:name=".activitys.SplashActivity" />
         <activity android:name=".activitys.LoginActivity" />
         <activity android:name=".activitys.OTP_verification" />
     </application>

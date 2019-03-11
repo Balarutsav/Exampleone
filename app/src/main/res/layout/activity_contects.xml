@@ -1,9 +1,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/llview"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
     android:gravity="center_horizontal"
+    android:windowSoftInputMode="stateHidden"
     android:orientation="vertical">
 
     <LinearLayout
@@ -72,6 +74,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="7dp"
                 android:hint="group_name"
+                android:windowSoftInputMode="stateHidden"
                 android:inputType="text"
                 android:maxLines="1"
                 android:paddingBottom="10dp"
@@ -152,7 +155,7 @@
             android:paddingBottom="10dp">
 
             <Button
-                android:id="@+id/btncancel"
+                android:id="@+id/btndeletegroup"
                 style="?android:attr/borderlessButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"

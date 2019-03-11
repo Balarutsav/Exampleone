@@ -21,6 +21,7 @@ import com.example.dhruvil.spit_it_out.Sqllite.DatabaseHelper;
 import com.example.dhruvil.spit_it_out.activitys.ContectsActivity;
 import com.example.dhruvil.spit_it_out.adapter.GroupListAdapter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ContactsFragments extends Fragment {
@@ -30,6 +31,8 @@ public class ContactsFragments extends Fragment {
     RecyclerView listView;
     Context context;
     List<MyDBModel> grouplist;
+    String[] numbers;
+
 
 
     @Nullable
@@ -39,42 +42,41 @@ public class ContactsFragments extends Fragment {
         tvgroup = view.findViewById(R.id.tvgroupname);
         button = view.findViewById(R.id.button);
         listView = view.findViewById(R.id.listallgroup);
-
         context = getActivity();
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(context, ContectsActivity.class));
+                startActivity(new Intent(context, ContectsActivity.class).putExtra("creategroup",false));
+
+
             }
         });
-        listView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(context, "name", Toast.LENGTH_SHORT).show();
-            }
-        });
+
+
+
         return view;
+
     }
 
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+
     }
 
     @Override
     public void onResume() {
         super.onResume();
         fillistview();
-
     }
 
     public void fillistview() {
-
-
         databaseHelper = new DatabaseHelper(context);
         grouplist = databaseHelper.getAllgroups();
         if (grouplist.size() > 0) {
+
             GroupListAdapter adapter = new GroupListAdapter(grouplist, context);
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
             listView.setLayoutManager(linearLayoutManager);
@@ -84,15 +86,11 @@ public class ContactsFragments extends Fragment {
                 @Override
                 public void onClick(View v) {
                     startActivity(new Intent(context, ContectsActivity.class));
+
                 }
             });
-
-
         }
-
     }
-
-
 }
 
 

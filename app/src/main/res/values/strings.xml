@@ -18,5 +18,13 @@
     <string name="settings">Settings</string>
     <string name="start_recoding">Start Recoding</string>
     <string name="play_last_recording">Play Last Recording</string>
+    <string name="discussion">Discussion</string>
+    <string-array name="Select_Views">
+        <item>public after 10 000 views</item>
+        <item>public after 100 000 views</item>
+        <item>public after 1 000 000 views</item>
+        <item>public after 10 000 000 views</item>
+        <item>public after 100 000 000 views</item>
+    </string-array>
 
 </resources>
