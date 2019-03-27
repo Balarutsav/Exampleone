@@ -71,7 +71,7 @@ public class VideoActivity extends AppCompatActivity {
             videoView.requestFocus();
             videoView.start();
 
-            startActivity(new Intent(VideoActivity.this,ShareActivity.class).putExtra("Video",videoFileUri.toString()).putExtra("videotype",true));
+            startActivity(new Intent(VideoActivity.this,ShareActivity.class).putExtra("Video",videoFileUri.toString()).putExtra("VideoType",true));
         }
     }
 

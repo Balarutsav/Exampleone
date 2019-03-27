@@ -1,19 +1,15 @@
 package com.example.dhruvil.spit_it_out.fragments;
 
+import android.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 import com.example.dhruvil.spit_it_out.Models.Model;
 import com.example.dhruvil.spit_it_out.Models.Spit;
@@ -23,6 +19,10 @@ import com.example.dhruvil.spit_it_out.webservices.RetrofitClient;
 import com.example.dhruvil.spit_it_out.webservices.RetrofitInterface;
 
 import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class PublicFragments extends Fragment {
     View view;
@@ -69,7 +69,7 @@ public class PublicFragments extends Fragment {
 
         RecyclerView recyclerView = view.findViewById(R.id.recyclerview);
         publicspits = new ArrayList<>();
-        adapter = new Myadapter(publicspits,getActivity());
+        adapter = new Myadapter(publicspits, getActivity());
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(context);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);

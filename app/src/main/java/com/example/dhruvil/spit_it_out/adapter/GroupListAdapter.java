@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.example.dhruvil.spit_it_out.Models.MyDBModel;
 import com.example.dhruvil.spit_it_out.R;
+import com.example.dhruvil.spit_it_out.Sqllite.DatabaseHelper;
 import com.example.dhruvil.spit_it_out.activitys.ContectsActivity;
 
 import java.util.List;
@@ -20,6 +21,7 @@ public class  GroupListAdapter extends RecyclerView.Adapter<GroupListAdapter.MyV
     Context context;
 
     private List<MyDBModel> datamodels;
+    DatabaseHelper databaseHelper;
 
 
     public GroupListAdapter(List<MyDBModel> datamodel, Context context) {
@@ -30,13 +32,13 @@ public class  GroupListAdapter extends RecyclerView.Adapter<GroupListAdapter.MyV
 
 
     @Override
-    public GroupListAdapter.MyViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+    public GroupListAdapter.MyViewHolder onCreateViewHolder(ViewGroup viewGroup, final int i) {
         View itemView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.rawgroup, viewGroup, false);
         return new MyViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(final GroupListAdapter.MyViewHolder myViewHolder, int i) {
+    public void onBindViewHolder(final GroupListAdapter.MyViewHolder myViewHolder, final int i) {
 
         final MyDBModel myDBModel = datamodels.get(i);
         myViewHolder.mygroupname.setText(myDBModel.getName());
@@ -57,7 +59,10 @@ public class  GroupListAdapter extends RecyclerView.Adapter<GroupListAdapter.MyV
                 intent.putExtra("groupname",myDBModel.getName());
                 intent.putExtra("membersnumber",myDBModel.getNumber());
                 intent.putExtra("itemclick",true);
+                intent.putExtra("groupid",i);
+
                 context.startActivity(intent);
+
             }
         });
 

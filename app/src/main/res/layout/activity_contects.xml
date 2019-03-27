@@ -166,7 +166,7 @@
                 android:paddingTop="7dp"
                 android:paddingBottom="7dp"
                 android:stateListAnimator="@null"
-                android:text="Delete Group"
+                android:text="cancel"
                 tools:targetApi="lollipop" />
 
             <Button

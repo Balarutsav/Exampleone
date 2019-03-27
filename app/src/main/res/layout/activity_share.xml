@@ -38,7 +38,6 @@
 
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-
                 android:contentDescription="@string/app_name"
                 android:scaleType="centerInside"
                 android:src="@drawable/spit_logo_splash" />
@@ -74,7 +73,7 @@
                 android:textSize="14sp">
 
                 <EditText
-                    android:id="@+id/edtsplitname"
+                    android:id="@+id/edtspitdescription"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/discussion"
@@ -84,7 +83,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_16sdp"
                 android:orientation="horizontal">
 
                 <include
@@ -93,7 +92,6 @@
                     android:layout_width="0dp"
                     android:layout_height="@dimen/_150sdp"
                     android:layout_marginStart="@dimen/_16sdp"
-
                     android:layout_weight="1" />
 
 
@@ -106,23 +104,23 @@
             </LinearLayout>
 
             <Spinner
+                android:id="@+id/spiviews"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_16sdp"
                 android:entries="@array/Select_Views"
                 android:textSize="14sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_16sdp"
                 android:orientation="horizontal">
 
                 <RadioGroup
                     android:id="@+id/rggroup"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="@dimen/_10sdp"
                     android:orientation="horizontal">
 
                     <RadioButton
@@ -147,7 +145,7 @@
                 android:id="@+id/rvgrouplist"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-             android:layout_margin="@dimen/_16sdp"></android.support.v7.widget.RecyclerView>
+             android:layout_marginTop="@dimen/_16sdp"></android.support.v7.widget.RecyclerView>
 
             <Button
                 android:id="@+id/btnAddGroup"

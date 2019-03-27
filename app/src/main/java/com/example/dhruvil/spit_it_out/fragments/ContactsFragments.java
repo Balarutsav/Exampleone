@@ -11,11 +11,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.dhruvil.spit_it_out.Models.MyDBModel;
+import com.example.dhruvil.spit_it_out.MyBounceInterpolator;
 import com.example.dhruvil.spit_it_out.R;
 import com.example.dhruvil.spit_it_out.Sqllite.DatabaseHelper;
 import com.example.dhruvil.spit_it_out.activitys.ContectsActivity;
@@ -25,7 +28,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ContactsFragments extends Fragment {
-    Button button;
+    Button button,button1;
     TextView tvgroup;
     DatabaseHelper databaseHelper;
     RecyclerView listView;
@@ -41,11 +44,21 @@ public class ContactsFragments extends Fragment {
         View view = inflater.inflate(R.layout.fragment3, container, false);
         tvgroup = view.findViewById(R.id.tvgroupname);
         button = view.findViewById(R.id.button);
+
         listView = view.findViewById(R.id.listallgroup);
         context = getActivity();
+        final Animation myanim= AnimationUtils.loadAnimation(context,R.anim.bounce);
+        MyBounceInterpolator interpolator = new MyBounceInterpolator(0.2, 40);
+        myanim.setInterpolator(interpolator);
+        myanim.setRepeatCount(Animation.INFINITE);
+        myanim.setRepeatMode(Animation.INFINITE);
+        button.startAnimation(myanim);
+
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 startActivity(new Intent(context, ContectsActivity.class).putExtra("creategroup",false));
 
 
@@ -70,6 +83,7 @@ public class ContactsFragments extends Fragment {
     public void onResume() {
         super.onResume();
         fillistview();
+
     }
 
     public void fillistview() {

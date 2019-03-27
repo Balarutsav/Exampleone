@@ -58,7 +58,7 @@ public class CameraActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if(this.requestCode == requestCode && resultCode == RESULT_OK){
             imageView.setImageURI(urisaveimage);
-            startActivity(new Intent(CameraActivity.this,ShareActivity.class).putExtra("image",urisaveimage.toString()).putExtra("type",true));
+            startActivity(new Intent(CameraActivity.this,ShareActivity.class).putExtra("image",urisaveimage.toString()).putExtra("ImageType",true));
 
         }
     }

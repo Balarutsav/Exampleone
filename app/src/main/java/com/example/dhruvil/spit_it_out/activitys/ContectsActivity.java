@@ -33,14 +33,15 @@ public class ContectsActivity extends AppCompatActivity {
     private ContactModel group_edit;
     Button btncreategroup,btndeletegroup;
     EditText edtgroupname;
+    public List<MyDBModel> myDBModel=new ArrayList<>();
     ArrayList<groupmembers> groupmembers;
     DatabaseHelper databaseHelper;
+
     private ListView listView;
     TextView tvcancel;
     private CustomAdapter customAdapter;
     private ArrayList<ContactModel> contactModelArrayList;
     private ArrayList<String> phoneList;
-    private ArrayList<MyDBModel> myDBModels;
     Fragment fragment = null;
    LinearLayout view;
    ListView listofcontects;
@@ -60,6 +61,8 @@ public class ContectsActivity extends AppCompatActivity {
         view=findViewById(R.id.llview);
         contactModelArrayList = new ArrayList<>();
         phoneList = new ArrayList<>();
+        myDBModel.addAll(databaseHelper.getAllgroups());
+
         btncreategroup = findViewById(R.id.btnSpitItOut);
         tvcancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,11 +74,39 @@ public class ContectsActivity extends AppCompatActivity {
         final Intent intent=getIntent();
         String groupname=intent.getStringExtra("groupname");
         String membersnumber=intent.getStringExtra("membersnumber");
+        final Integer position=intent.getIntExtra("groupid",0);
         List<String> numbers = new ArrayList<>();
+
 
         if(intent.getBooleanExtra("itemclick",false)){
             edtgroupname.setText(groupname);
             numbers = Arrays.asList(membersnumber.split(","));
+            btncreategroup.setText("upgrade group");
+            btndeletegroup.setText("delete group");
+            btndeletegroup.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    databaseHelper.deletegroup(myDBModel.get(position));
+                    finish();
+
+
+                }
+            });
+            btncreategroup.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    MyDBModel m=myDBModel.get(position);
+                    m.setName(edtgroupname.getText().toString());
+                    databaseHelper.updategroup(m);
+                    myDBModel.set(position,m);
+                    finish();
+
+
+                }
+            });
+
+
+
             /*phoneList=databaseHelper.deletegroup();*/
 
         }
@@ -114,7 +145,17 @@ public class ContectsActivity extends AppCompatActivity {
 
         }
 
+        btndeletegroup.setOnClickListener(new View.OnClickListener() {
+            @Override
 
+            public void onClick(View v) {
+                if (TextUtils.isEmpty(edtgroupname.getText().toString().trim())) {
+                    Toast.makeText(ContectsActivity.this, "no", Toast.LENGTH_SHORT).show();
+                } else {
+                    finish();
+                }
+            }
+        });
         btncreategroup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -125,7 +166,7 @@ public class ContectsActivity extends AppCompatActivity {
                         Toast.makeText(ContectsActivity.this, "enter number", Toast.LENGTH_SHORT).show();
                     }else if(edtgroupname !=null){
 
-                        finish();
+
                     }
                 } else {
 
@@ -141,6 +182,8 @@ public class ContectsActivity extends AppCompatActivity {
                                 phoneNumbers = dataList.get(i).getNumber();
                             } else {
                                 phoneNumbers = phoneNumbers + "," + dataList.get(i).getNumber();
+                                Intent intent=new Intent();
+                                intent.putExtra("",phoneNumbers);
 
                             }
                         }
