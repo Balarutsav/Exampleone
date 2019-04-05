@@ -42,14 +42,17 @@ public class Myadapter extends RecyclerView.Adapter<Myadapter.MyViewHolder> impl
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.raw, parent, false);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.raw_public_frg, parent, false);
         return new MyViewHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder myViewHolder, int i) {
+        myViewHolder.imageViewl.setVisibility(View.VISIBLE);
+        myViewHolder.videoView.setVisibility(View.VISIBLE);
+        myViewHolder.audio.setVisibility(View.VISIBLE);
         final String link = datamodel.get(i).getSharetext();
-        myViewHolder.tvdescription.setText(datamodel.get(i).getDesctype());
+
         myViewHolder.tvview.setText(datamodel.get(i).getViews());
         final String createdate = datamodel.get(i).getDtCreate();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -64,9 +67,8 @@ public class Myadapter extends RecyclerView.Adapter<Myadapter.MyViewHolder> impl
         } catch (ParseException e) {
             e.printStackTrace();
         }
-
-
         if (datamodel.get(i).getKind().equals("pic")) {
+
             myViewHolder.videoView.setVisibility(View.GONE);
             myViewHolder.audio.setVisibility(View.GONE);
 
@@ -178,7 +180,6 @@ public class Myadapter extends RecyclerView.Adapter<Myadapter.MyViewHolder> impl
             tvview = itemView.findViewById(R.id.tvview);
             audio = itemView.findViewById(R.id.pfaudio);
             videoView = itemView.findViewById(R.id.pfvideoview);
-            tvdescription = itemView.findViewById(R.id.tvdescription);
             tvdayago = itemView.findViewById(R.id.tvdayago);
             ivinfo = itemView.findViewById(R.id.ibaction);
             ivshare = itemView.findViewById(R.id.ibshare);

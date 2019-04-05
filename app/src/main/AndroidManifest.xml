@@ -31,8 +31,9 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
-        <activity android:name=".activitys.SplashActivity" />
+        <activity android:name=".activitys.SplashActivity"></activity>
         <activity android:name=".activitys.LoginActivity" />
         <activity android:name=".activitys.OTP_verification" />
     </application>

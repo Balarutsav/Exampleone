@@ -22,6 +22,7 @@ public class VideoActivity extends AppCompatActivity {
     public static final int VIDEO_CAPTURED = 1;
     String folder_main = "Spit_It";
     Uri savevideo;
+    File videos;
 
 
 
@@ -41,8 +42,8 @@ public class VideoActivity extends AppCompatActivity {
 
 
                 File video = new File(Environment.getExternalStorageDirectory() + "/" + folder_main, "Video");
-                File image = new File(video, System.currentTimeMillis() + "VideoActivity.mp4");
-                videoFileUri=Uri.fromFile(image);
+             videos  = new File(video, System.currentTimeMillis() + "VideoActivity.mp4");
+                videoFileUri=Uri.fromFile(videos);
                 Intent recordvidero = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
                 recordvidero.putExtra(MediaStore.EXTRA_OUTPUT,videoFileUri);
                 startActivityForResult(recordvidero, VIDEO_CAPTURED);
@@ -71,7 +72,7 @@ public class VideoActivity extends AppCompatActivity {
             videoView.requestFocus();
             videoView.start();
 
-            startActivity(new Intent(VideoActivity.this,ShareActivity.class).putExtra("Video",videoFileUri.toString()).putExtra("VideoType",true));
+            startActivity(new Intent(VideoActivity.this,ShareActivity.class).putExtra("Video",videoFileUri.toString()).putExtra("videotype",true).putExtra("videofilepath",videos.toString()));
         }
     }
 

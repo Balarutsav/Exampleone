@@ -17,6 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.example.dhruvil.spit_it_out.Models.ContactModel;
 import com.example.dhruvil.spit_it_out.Models.MyDBModel;
 import com.example.dhruvil.spit_it_out.Models.groupmembers;
@@ -31,9 +32,9 @@ import java.util.List;
 public class ContectsActivity extends AppCompatActivity {
 
     private ContactModel group_edit;
-    Button btncreategroup,btndeletegroup;
+    Button btncreategroup, btndeletegroup;
     EditText edtgroupname;
-    public List<MyDBModel> myDBModel=new ArrayList<>();
+    public List<MyDBModel> myDBModel = new ArrayList<>();
     ArrayList<groupmembers> groupmembers;
     DatabaseHelper databaseHelper;
 
@@ -43,22 +44,21 @@ public class ContectsActivity extends AppCompatActivity {
     private ArrayList<ContactModel> contactModelArrayList;
     private ArrayList<String> phoneList;
     Fragment fragment = null;
-   LinearLayout view;
-   ListView listofcontects;
-
+    LinearLayout view;
+    ListView listofcontects;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contects);
-        btndeletegroup=findViewById(R.id.btndeletegroup);
+        btndeletegroup = findViewById(R.id.btndeletegroup);
         tvcancel = findViewById(R.id.tvCancel);
-        listofcontects=findViewById(R.id.listOfContacts);
+        listofcontects = findViewById(R.id.listOfContacts);
         databaseHelper = new DatabaseHelper(this);
         listView = findViewById(R.id.listOfContacts);
         edtgroupname = findViewById(R.id.editText_groupname);
-        view=findViewById(R.id.llview);
+        view = findViewById(R.id.llview);
         contactModelArrayList = new ArrayList<>();
         phoneList = new ArrayList<>();
         myDBModel.addAll(databaseHelper.getAllgroups());
@@ -71,14 +71,15 @@ public class ContectsActivity extends AppCompatActivity {
             }
         });
 
-        final Intent intent=getIntent();
-        String groupname=intent.getStringExtra("groupname");
-        String membersnumber=intent.getStringExtra("membersnumber");
-        final Integer position=intent.getIntExtra("groupid",0);
+        final Intent intent = getIntent();
+        String groupname = intent.getStringExtra("groupname");
+        String membersnumber = intent.getStringExtra("membersnumber");
+
+        final Integer position = intent.getIntExtra("groupid", 0);
         List<String> numbers = new ArrayList<>();
 
 
-        if(intent.getBooleanExtra("itemclick",false)){
+        if (intent.getBooleanExtra("itemclick", false)) {
             edtgroupname.setText(groupname);
             numbers = Arrays.asList(membersnumber.split(","));
             btncreategroup.setText("upgrade group");
@@ -87,32 +88,59 @@ public class ContectsActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     databaseHelper.deletegroup(myDBModel.get(position));
+                    myDBModel.remove(position);
                     finish();
-
 
                 }
             });
             btncreategroup.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    MyDBModel m=myDBModel.get(position);
+                    MyDBModel m = myDBModel.get(position);
                     m.setName(edtgroupname.getText().toString());
                     databaseHelper.updategroup(m);
-                    myDBModel.set(position,m);
+                    myDBModel.set(position, m);
+                    Toast.makeText(ContectsActivity.this, "ok", Toast.LENGTH_SHORT).show();
                     finish();
-
-
                 }
             });
 
 
+        } else {
+            btncreategroup.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (TextUtils.isEmpty(edtgroupname.getText().toString().trim())) {
 
-            /*phoneList=databaseHelper.deletegroup();*/
+                        Toast.makeText(ContectsActivity.this, "plese enter the group name", Toast.LENGTH_SHORT).show();
+                        if (edtgroupname == null) {
+                            Toast.makeText(ContectsActivity.this, "enter number", Toast.LENGTH_SHORT).show();
+                        } else if (edtgroupname != null) {
+                        }
+                    } else {
+                        String phoneNumbers = "";
+                        ArrayList<ContactModel> dataList = customAdapter.getContactModelArrayList();
+
+                        for (int i = 0; i < dataList.size(); i++) {
+
+                            if (dataList.get(i).isChecked()) {
+
+                                if (TextUtils.isEmpty(phoneNumbers)) {
+                                    phoneNumbers = dataList.get(i).getNumber();
+                                } else {
+                                    phoneNumbers = phoneNumbers + "," + dataList.get(i).getNumber();
+                                    Intent intent = new Intent();
+                                    intent.putExtra("group", phoneNumbers);
+                                }
+                            }
+                        }
+                        databaseHelper.insertGroup(edtgroupname.getText().toString().trim(), phoneNumbers);
+                        finish();
+                    }
+                }
+            });
 
         }
-
-
-
         Cursor phones = getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, null, null, ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME + " ASC");
         while (phones.moveToNext()) {
             String name = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
@@ -120,9 +148,9 @@ public class ContectsActivity extends AppCompatActivity {
             ContactModel contactModel = new ContactModel();
             contactModel.setName(name);
             contactModel.setNumber(phoneNumber);
-            if(numbers.contains(phoneNumber)){
+            if (numbers.contains(phoneNumber)) {
                 contactModel.setChecked(true);
-            }else {
+            } else {
                 contactModel.setChecked(false);
             }
 
@@ -144,65 +172,10 @@ public class ContectsActivity extends AppCompatActivity {
             listView.setAdapter(customAdapter);
 
         }
-
-        btndeletegroup.setOnClickListener(new View.OnClickListener() {
-            @Override
-
-            public void onClick(View v) {
-                if (TextUtils.isEmpty(edtgroupname.getText().toString().trim())) {
-                    Toast.makeText(ContectsActivity.this, "no", Toast.LENGTH_SHORT).show();
-                } else {
-                    finish();
-                }
-            }
-        });
-        btncreategroup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (TextUtils.isEmpty(edtgroupname.getText().toString().trim())) {
-
-                    Toast.makeText(ContectsActivity.this, "plese enter the group name", Toast.LENGTH_SHORT).show();
-                    if(edtgroupname ==null){
-                        Toast.makeText(ContectsActivity.this, "enter number", Toast.LENGTH_SHORT).show();
-                    }else if(edtgroupname !=null){
-
-
-                    }
-                } else {
-
-
-                    String phoneNumbers = "";
-                    ArrayList<ContactModel> dataList = customAdapter.getContactModelArrayList();
-
-                    for (int i = 0; i < dataList.size(); i++) {
-
-                        if (dataList.get(i).isChecked()) {
-
-                            if (TextUtils.isEmpty(phoneNumbers)) {
-                                phoneNumbers = dataList.get(i).getNumber();
-                            } else {
-                                phoneNumbers = phoneNumbers + "," + dataList.get(i).getNumber();
-                                Intent intent=new Intent();
-                                intent.putExtra("",phoneNumbers);
-
-                            }
-                        }
-
-                    }
-
-                    databaseHelper.insertGroup(edtgroupname.getText().toString().trim(), phoneNumbers);
-
-                    finish();
-                }
-
-            }
-        });
-
-
-
     }
-    public void hideSoftKeyboard(View view){
-        InputMethodManager imm =(InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+
+    public void hideSoftKeyboard(View view) {
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 

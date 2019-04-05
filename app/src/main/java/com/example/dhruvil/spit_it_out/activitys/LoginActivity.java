@@ -2,6 +2,7 @@ package com.example.dhruvil.spit_it_out.activitys;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -23,7 +24,9 @@ public class LoginActivity extends AppCompatActivity {
     Button button;
     EditText editText;
     String phonenum;
+
     CountryCodePicker countryCodePicker;
+
     Phonenumber.PhoneNumber phoneNumber;
     String result;
 

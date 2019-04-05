@@ -67,7 +67,7 @@ public class PublicFragments extends Fragment {
 
     public void initViews() {
 
-        RecyclerView recyclerView = view.findViewById(R.id.recyclerview);
+            RecyclerView recyclerView = view.findViewById(R.id.recyclerview);
         publicspits = new ArrayList<>();
         adapter = new Myadapter(publicspits, getActivity());
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(context);

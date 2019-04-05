@@ -79,7 +79,7 @@ public class AudioActivity extends AppCompatActivity {
                 } catch (Exception e) {
 
                 }
-                startActivity(new Intent(AudioActivity.this,ShareActivity.class).putExtra("AudioUri",Audio.getPath()).putExtra("AudioType",true));
+                startActivity(new Intent(AudioActivity.this,ShareActivity.class).putExtra("AudioUri",Audio.getPath()).putExtra("AudioType",true).putExtra("audiotype",Audio.toString()));
 
                 buttonStop.setEnabled(false);
                 buttonStart.setEnabled(true);

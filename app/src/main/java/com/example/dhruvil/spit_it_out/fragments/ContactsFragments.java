@@ -44,15 +44,9 @@ public class ContactsFragments extends Fragment {
         View view = inflater.inflate(R.layout.fragment3, container, false);
         tvgroup = view.findViewById(R.id.tvgroupname);
         button = view.findViewById(R.id.button);
-
+        context=getActivity();
         listView = view.findViewById(R.id.listallgroup);
-        context = getActivity();
-        final Animation myanim= AnimationUtils.loadAnimation(context,R.anim.bounce);
-        MyBounceInterpolator interpolator = new MyBounceInterpolator(0.2, 40);
-        myanim.setInterpolator(interpolator);
-        myanim.setRepeatCount(Animation.INFINITE);
-        myanim.setRepeatMode(Animation.INFINITE);
-        button.startAnimation(myanim);
+
 
 
         button.setOnClickListener(new View.OnClickListener() {
@@ -95,14 +89,18 @@ public class ContactsFragments extends Fragment {
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
             listView.setLayoutManager(linearLayoutManager);
             listView.setAdapter(adapter);
+            adapter.notifyDataSetChanged();
             listView.setClickable(true);
             listView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    startActivity(new Intent(context, ContectsActivity.class));
+                    startActivity(new Intent(context, ContectsActivity.class).putExtra("from item",true));
 
                 }
             });
+        }
+        else{
+            Toast.makeText(context, "you not have any groups", Toast.LENGTH_SHORT).show();
         }
     }
 }

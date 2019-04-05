@@ -1,6 +1,7 @@
 package com.example.dhruvil.spit_it_out.activitys;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
@@ -79,6 +80,10 @@ public class OTP_verification extends AppCompatActivity {
         call.enqueue(new Callback<Mobile>() {
             @Override
             public void onResponse(Call<Mobile> call, Response<Mobile> response) {
+                response.body();
+                String id=response.body().getId();
+                Intent intent=new Intent();
+                intent.putExtra("userregid",id);
 
 
             }

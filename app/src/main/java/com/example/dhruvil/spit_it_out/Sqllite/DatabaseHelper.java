@@ -69,10 +69,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public List<MyDBModel> getAllgroups() {
         List<MyDBModel> myDBModels = new ArrayList<>();
-
-
         String selectQuery = "select * from " + MyDBModel.TABLE_NAME + " ORDER BY " + MyDBModel.COULUMN_ID;
-
         SQLiteDatabase db = DatabaseHelper.this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
         if (cursor.moveToFirst()) {

@@ -1,17 +1,23 @@
 package com.example.dhruvil.spit_it_out.activitys;
 
+import android.app.Activity;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.MediaController;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -27,22 +33,29 @@ import com.example.dhruvil.spit_it_out.adapter.ShareSpitGroupAdapter;
 import com.example.dhruvil.spit_it_out.webservices.RetrofitClient;
 import com.example.dhruvil.spit_it_out.webservices.RetrofitInterface;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class ShareActivity extends AppCompatActivity {
-    ImageView ivimage, ivaudio;
+    ImageView ivimage, ivaudio,ivsharespit;
     EditText edtdescription;
+    LinearLayout linearLayout;
     TextView tvcancel;
     Context context;
     Button  btnAddGroup;
     RadioGroup rgsharespit;
     String group;
+    String groupnumbers;
+    String filepath;
     Uri images, video;
     String Audio;
     Spinner spiviews;
@@ -52,6 +65,7 @@ public class ShareActivity extends AppCompatActivity {
     RecyclerView rvgrouplist;
     List<MyDBModel> grouplist;
     DatabaseHelper databaseHelper;
+    ShareSpitGroupAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,9 +76,13 @@ public class ShareActivity extends AppCompatActivity {
         findview();
         setlistener();
         fillistview();
-        Intent intent=getIntent();
-        group=intent.getStringExtra("group");
 
+
+
+    }
+    public static void hideKeyboardFrom(Context context, View view) {
+        InputMethodManager imm = (InputMethodManager) context.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
     public void onResume() {
         super.onResume();
@@ -72,11 +90,29 @@ public class ShareActivity extends AppCompatActivity {
     }
 
     private void setlistener() {
+        linearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                hideKeyboardFrom(getApplicationContext(),v);
+
+            }
+        });
+
+        ivsharespit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                postapi();
+                Toast.makeText(context, "your spit was uploading", Toast.LENGTH_SHORT).show();
+
+            }
+        });
         if (intent.getBooleanExtra("imagetype", false)) {
             images = Uri.parse(intent.getStringExtra("image"));
             ivimage.setImageURI(images);
             ivaudio.setVisibility(View.GONE);
             type="pic";
+            filepath=intent.getStringExtra("imagepath");
+
             vvvideo.setVisibility(View.GONE);
         } else if (intent.getBooleanExtra("videotype", false)) {
             video = Uri.parse(intent.getStringExtra("Video"));
@@ -87,11 +123,14 @@ public class ShareActivity extends AppCompatActivity {
             vvvideo.requestFocus();
             vvvideo.start();
             type="video";
+            filepath=intent.getStringExtra("videofilepath");
+
 
 
         } else {
             Audio=intent.getStringExtra("AudioUri");
             type="Audio";
+            filepath=intent.getStringExtra("audiotype");
             ivaudio.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -136,6 +175,8 @@ public class ShareActivity extends AppCompatActivity {
     }
 
     private void findview() {
+        linearLayout=findViewById(R.id.ll);
+        ivsharespit=findViewById(R.id.ivsharespit);
         edtdescription=findViewById(R.id.edtspitdescription);
         spiviews=findViewById(R.id.spiviews);
         btnAddGroup=findViewById(R.id.btnAddGroup);
@@ -152,27 +193,53 @@ public class ShareActivity extends AppCompatActivity {
         databaseHelper = new DatabaseHelper(context);
         grouplist = databaseHelper.getAllgroups();
         if (grouplist.size() > 0) {
-            ShareSpitGroupAdapter adapter = new ShareSpitGroupAdapter(grouplist, context);
+            adapter = new ShareSpitGroupAdapter(grouplist, context);
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
             rvgrouplist.setLayoutManager(linearLayoutManager);
             rvgrouplist.setAdapter(adapter);
         }
-    }
-  /*  public void registerApi() {
 
+    }
+    /*public BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            // Get extra data included in the Intent
+            groupnumbers= intent.getStringExtra("groumembersnumbers");
+
+        }
+    };*/
+    public void postapi() {
+
+      /*  LocalBroadcastManager.getInstance(ShareActivity.this).registerReceiver(mMessageReceiver,new IntentFilter("selected-group"));
+        Toast.makeText(context, groupnumbers, Toast.LENGTH_SHORT).show();
+      */  File file = new File(filepath);
+        RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
+        MultipartBody.Part body = MultipartBody.Part.createFormData("file", file.getName(), requestFile);
         RetrofitInterface retrofitInterface = RetrofitClient.getClient().create(RetrofitInterface.class);
-        Call<ResponseBody> call = retrofitInterface.postspit("1",spiviews.getSelectedItem().toString(),group,edtdescription.getText().toString(),"0",type,);
+        RequestBody regid = RequestBody.create(MediaType.parse("text/plain"),"C28C282684D15BC67A116716F380C311DB8F2B2BE5490E607CB51011FDD1DCECD56");
+        RequestBody spinner = RequestBody.create(MediaType.parse("text/plain"),spiviews.getSelectedItem().toString());
+        RequestBody groupmembers= RequestBody.create(MediaType.parse("text/plain"),adapter.numbers);
+        RequestBody description= RequestBody.create(MediaType.parse("text/plain"), edtdescription.getText().toString());
+        RequestBody signaturespitid = RequestBody.create(MediaType.parse("text/plain"), "0");
+        RequestBody kind = RequestBody.create(MediaType.parse("text/plain"), type);
+
+
+
+        Call<ResponseBody> call = retrofitInterface.postspit(regid,spinner,groupmembers,description,signaturespitid,kind,body);
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
 
-
+                Toast.makeText(ShareActivity.this, "post api onResponse", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+                Toast.makeText(ShareActivity.this, "api resopne on fail", Toast.LENGTH_SHORT).show();
+
             }
         });
 
-    }*/
+    }
 }
